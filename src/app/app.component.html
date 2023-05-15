@@ -1,0 +1,29 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happen :)</p>
+<div [formGroup]="orderForm">
+  <div
+    formArrayName="items"
+    *ngFor="let item of orderForm.get('items').controls; let i = index"
+  >
+    <div [formGroupName]="i">
+      <!-- {{ item | json }} -->
+      <input
+        *ngIf="arrData[i]?.description === 'name'"
+        formControlName="{{ arrData[i]?.name }}"
+        placeholder="Item name"
+      />
+      <textarea
+        *ngIf="arrData[i]?.description === 'ara'"
+        formControlName="{{ arrData[i]?.name }}"
+        (change)="change(i)"
+        placeholder="Item description"
+      ></textarea>
+      <!-- <input formControlName="description" placeholder="Item description">
+    <input formControlName="price" placeholder="Item price"> -->
+    </div>
+
+    <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
+  </div>
+</div>
+<button (click)="addItem()">Add</button>
+<button (click)="addItemData()">AddData</button>
